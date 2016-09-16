@@ -28,7 +28,7 @@ int main(void)
 	} 
 		
 	if (  scanf("%f", &n) == EOF ) {
-		printf( " done\n");
+		printf( "Done.\n");
 	
 }
         	
