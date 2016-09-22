@@ -2,7 +2,7 @@
 #include <math.h>
 
 
-void main()	{
+int  main(void)	{
 	float a;
 	float sum = 0.0;
 	int count=0 ;
@@ -26,4 +26,5 @@ void main()	{
 	}
 
 	printf("%.2f %.2f %.2f \n", min , max , sum/count);
+	return 0;
 }
