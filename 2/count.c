@@ -13,7 +13,7 @@ int main(void){
     {
       if( ('a' <= c && c <= 'z') || ('A' <=  c && c <= 'Z') || (c == '\'') )
       {
-        flag = 1;
+        flag = 0;
       }
       else
       {
@@ -22,16 +22,13 @@ int main(void){
           linecount+=1;
         }
 
-        if ( flag == 1 )
+        if ( flag == 0 )
         {
           wordcount += 1;
-          flag = 0;
+          flag = 1;
         }
-
-        charcount+=1;
       }
-
-
+      charcount+=1;
   }
   printf("%lu %lu %lu\n" ,charcount , wordcount , linecount);
 
