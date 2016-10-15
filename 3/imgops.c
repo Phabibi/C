@@ -149,6 +149,16 @@ void flip_horizontal( uint8_t array[],
               unsigned int rows )
 {
   // your code here
+  int y,x,temp;
+  for (y = 0; y < rows ; y++)
+  {
+  for(x = 0 ; x < cols ; x++)
+    {
+      temp = array[x];
+      array[x] = array [cols - y];
+      array [cols - y] = temp;
+    }
+  }
 }
 
 // flip the image top-to-bottom.
