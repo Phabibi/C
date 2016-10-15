@@ -84,19 +84,18 @@ uint8_t min( const uint8_t array[],
 	     unsigned int rows )
 {
   // your code here
-  int i, min , temp;
-  min = array[0];
-  temp = 0;
-  for(i = 0 ; i < cols*rows ; i++)
+  int i, mini;
+  mini = array [0];
+
+  for(i = 0 ; i < cols*rows; i++)
   {
-    if(array[i] < min)
+    if( array[i] < mini )
     {
-      temp = i;
-      min = array[i];
+      mini = array[i];
     }
   }
 
-  return temp;
+return mini;
 }
 
 // Return the lightest color that appears in the array; i.e. the
@@ -106,8 +105,18 @@ uint8_t max( const uint8_t array[],
 		 unsigned int rows )
 {
   // your code here
+  int i,maxi;
+  maxi = array[0];
 
-  return 0;
+  for ( i = 0 ; i < cols*rows ; i++)
+  {
+    if ( array[i] > maxi)
+    {
+      maxi = array[i];
+    }
+  }
+
+  printf("%d\n", maxi);;
 }
 
 // TASK 2
