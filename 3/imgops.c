@@ -116,7 +116,7 @@ uint8_t max( const uint8_t array[],
     }
   }
 
-  printf("%d\n", maxi);;
+  return maxi;
 }
 
 // TASK 2
