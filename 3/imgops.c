@@ -221,6 +221,14 @@ void invert( uint8_t array[],
          unsigned int rows )
 {
     // your code here
+    int x,y;
+    for(y = 0 ; y < rows; y++)
+    {
+      for ( x = 0 ; x < cols ; x++)
+      {
+        set_pixel(array,cols,rows,x,y,255-get_pixel(array,cols,rows,x,y));
+      }
+    }
 }
 
 /* TASK 6 */
