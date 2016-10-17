@@ -167,15 +167,15 @@ void flip_vertical( uint8_t array[],
             unsigned int rows )
 {
     // your code here
-    int y,x,temp;
+    int y,x,tempt;
 
     for(x = 0 ; x < cols; x++)
     {
       for(y = 0 ; y < rows/2 ; y++)
       {
-        temp = array[x+y*cols];
+        tempt = array[x+y*cols];
         array[x+y*cols] = array[x+cols*(rows-y-1)];
-        temp = array[x+cols*(rows-y-1)];
+        array[x+cols*(rows-y-1)] = tempt;
       }
     }
 }
