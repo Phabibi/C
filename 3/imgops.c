@@ -152,12 +152,12 @@ void flip_horizontal( uint8_t array[],
   int y,x,temp;
   for (y = 0; y < rows ; y++)
   {
-  for(x = 0 ; x < cols ; x++)
-    {
-      temp = array[x];
-      array[x] = array [cols - y];
-      array [cols - y] = temp;
-    }
+    for(x = 0 ; x < cols/2  ; x++)
+      {
+        temp = array[x+y*cols];
+        array[x+y*cols] = array [y*cols+cols-x-1];
+        array [y*cols+cols-x-1] = temp;
+      }
   }
 }
 
@@ -167,6 +167,17 @@ void flip_vertical( uint8_t array[],
             unsigned int rows )
 {
     // your code here
+    int y,x,temp;
+
+    for(x = 0 ; x < cols; x++)
+    {
+      for(y = 0 ; y < rows/2 ; y++)
+      {
+        temp = array[x+y*cols];
+        array[x+y*cols] = array[x+cols*(rows-y-1)];
+        temp = array[x+cols*(rows-y-1)];
+      }
+    }
 }
 
 /* TASK 4 */
