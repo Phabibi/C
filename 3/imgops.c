@@ -249,7 +249,7 @@ void scale_brightness( uint8_t array[],
     {
       if ( (array[x+y*cols] * scale_factor) < 255 )
       {
-        array[x+y*cols] = array[x+y*cols] * scale_factor;
+        array[x+y*cols] = round(array[x+y*cols] * scale_factor);
       }
       else
       {
