@@ -327,6 +327,17 @@ void region_set( uint8_t array[],
          uint8_t color )
 {
     // your code here
+    int x,y;
+    if(top != bottom && left != right)
+    {
+      for (y = top ; y < bottom ; y++)
+      {
+        for ( x = left ; x < right ; x++)
+        {
+          set_pixel(array,cols,rows,x,y,color);
+        }
+      }
+    }
 }
 
 /* TASK 10 */
@@ -343,7 +354,7 @@ unsigned long int region_integrate( const uint8_t array[],
                     unsigned int bottom )
 {
     // your code here
-    return 0;
+
 }
 
 /* TASK 11 */
