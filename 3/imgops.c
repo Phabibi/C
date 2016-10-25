@@ -270,6 +270,18 @@ void normalize( uint8_t array[],
         unsigned int rows )
 {
     // your code here
+    int x,y,current;
+    uint8_t min_num = min(array,cols,rows);
+    uint8_t max_num = max(array,cols,rows);
+    for(y = 0 ; y < rows; y++)
+    {
+      for ( x = 0 ; x < cols ; x++)
+      {
+        current = array[x+y*cols];
+        int ratio = (  ((float)(current - min_num) / (max_num - min_num))) *255;
+        array[x+y*cols] = round(ratio);
+      }
+    }
 }
 
 /* TASK 8 */
@@ -354,7 +366,6 @@ unsigned long int region_integrate( const uint8_t array[],
                     unsigned int bottom )
 {
     // your code here
-
 }
 
 /* TASK 11 */
