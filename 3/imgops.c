@@ -278,11 +278,10 @@ void normalize( uint8_t array[],
       for ( x = 0 ; x < cols ; x++)
       {
         current = array[x+y*cols];
-        int ratio = (  ((float)(current - min_num) / (max_num - min_num))) *255;
-        array[x+y*cols] = round(ratio);
+        int ratio = ( ((float)(current - min_num) / (max_num - min_num))) *255;
+        array[x+y*cols] = (int) ratio;
       }
     }
-    return 0;
 }
 
 /* TASK 8 */
