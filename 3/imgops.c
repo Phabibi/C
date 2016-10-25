@@ -282,6 +282,7 @@ void normalize( uint8_t array[],
         array[x+y*cols] = round(ratio);
       }
     }
+    return 0;
 }
 
 /* TASK 8 */
