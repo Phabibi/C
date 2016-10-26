@@ -400,5 +400,15 @@ uint8_t* region_copy( const uint8_t array[],
               unsigned int bottom )
 {
     // your code here
-    return NULL;
-}
+    int len = abs((top - bottom) * (right - left));
+    uint8_t * arr = malloc(len * sizeof(uint8_t));
+
+    if (top == bottom || left == right)
+    {
+      return NULL;
+    }
+
+    return arr;
+
+    free(arr);
+  }
