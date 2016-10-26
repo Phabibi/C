@@ -265,6 +265,7 @@ void scale_brightness( uint8_t array[],
 // Normalize the dynamic range of the image, i.e. Shift and scale the
 // pixel colors so that that darkest pixel is 0 and the lightest pixel
 // is 255. Hint: you already wrote min() and max().
+
 void normalize( uint8_t array[],
         unsigned int cols,
         unsigned int rows )
@@ -273,16 +274,18 @@ void normalize( uint8_t array[],
     int x,y,current;
     uint8_t min_num = min(array,cols,rows);
     uint8_t max_num = max(array,cols,rows);
+    float ratio;
     for(y = 0 ; y < rows; y++)
     {
       for ( x = 0 ; x < cols ; x++)
       {
-        current = array[x+y*cols];
-        int ratio = ( ((float)(current - min_num) / (max_num - min_num))) *255;
-        array[x+y*cols] = (int) ratio;
+        current  = array[x+y*cols];
+        ratio = (((float)(current - min_num) / (max_num - min_num))) *255;
+        array[x+y*cols] = round (ratio);
       }
     }
 }
+
 
 /* TASK 8 */
 
@@ -366,8 +369,21 @@ unsigned long int region_integrate( const uint8_t array[],
                     unsigned int bottom )
 {
     // your code here
-}
+    int x,y;
+    int sum = 0;
 
+    if(top == bottom || left == right)    // empty region
+    {
+      return 0;
+    }
+    for (y = top ; y < bottom ; y++)
+    {
+      for ( x = left ; x < right ; x++)
+      {
+        sum += array[x+y*cols];
+      }
+    }
+  }
 /* TASK 11 */
 
 // Get a new image which is a copy of the region. Empty regions return
