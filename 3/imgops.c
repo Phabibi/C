@@ -300,7 +300,18 @@ uint8_t* half( const uint8_t array[],
 	       unsigned int rows )
 {
   // your code here
-  return NULL;
+  int x,y;
+  int len = (cols/2) * (rows/2);
+  uint8_t * arr = malloc(len * sizeof(uint8_t));
+
+  for (y = 0 ; y < rows/2 ; y++)
+  {
+    for(x = 0 ; x < cols/2 ; x++)
+    {
+      arr [x + y * cols/2] = round ( (array [2*x + 2*y * cols] + array[(2*x+1)+ 2*y *cols] + array [(2*x+1) + (2*y+1) *cols] + array [2*x + (2*y+1) *cols]) / 4.0 );
+    }
+  }
+  return arr;
 }
 
 
@@ -400,6 +411,7 @@ uint8_t* region_copy( const uint8_t array[],
               unsigned int bottom )
 {
     // your code here
+    int x,y,i = 0;
     int len = abs((top - bottom) * (right - left));
     uint8_t * arr = malloc(len * sizeof(uint8_t));
 
@@ -408,7 +420,14 @@ uint8_t* region_copy( const uint8_t array[],
       return NULL;
     }
 
-    return arr;
+    for (y = top ; y < bottom ; y++)
+    {
+      for (x = left ; x < right ; x++)
+      {
+          arr[i] = array[x + y *cols];
+          i++;
+      }
+    }
 
-    free(arr);
+    return arr;
   }
