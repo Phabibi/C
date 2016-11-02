@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <math.h>
+#include <stdint.h>
 
 void draw_circle( uint8_t img[],
     unsigned int cols,
@@ -7,7 +8,7 @@ void draw_circle( uint8_t img[],
     int x,
     int y,
     int r,
-    uint8_t color );
+    uint8_t color )
   {
     int a = 0 , b = 0;
     float x_d = 0 , y_d = 0;
