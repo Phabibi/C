@@ -1,5 +1,4 @@
 #include <stdint.h>
-
 void life( uint8_t array[],
       unsigned int cols,
       unsigned int rows )
@@ -83,7 +82,7 @@ void life( uint8_t array[],
           }
           counter = 0;
         }
-        else if (array [x + y *cols])
+        else if (array [x + y *cols] != 0)
         {
           xmax = x+1;                               // boundaries
           xmin = x-1;
