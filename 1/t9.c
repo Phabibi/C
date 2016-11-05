@@ -9,7 +9,6 @@ int main(void)
   int numRows = z;
   for(int i = 0; i < z; i++)
   {
-    printf("\n");
     char t_char;
     numRows--;
     int left = floor(numRows*(x/(2.0*z)));
