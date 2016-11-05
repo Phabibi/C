@@ -38,17 +38,27 @@ void draw_rectangle( uint8_t array[],
       for(i = y; i <= (y + rect_height) ; i++)
       {
 
+        if (i >= 0  && j >= 0)
+        {
         array[x + i*cols] = color;
+        }
 
         for(j = x ; j < (x + rect_width) ; j++)
         {
           if(i == y || i == (y + rect_height) )    // empty region (middle)
           {
-            array[j + i *cols] = color;
+            if( i >= 0 && j >= 0)
+              {
+                array[j + i *cols] = color;
+              }
           }
 
         }
-        array[j + i*cols] = color;
+          if(i >= 0 && j >= 0)
+          {
+          array[j + i*cols] = color;
+          }
       }
+
   }
 }
