@@ -149,10 +149,10 @@ intarr_result_t intarr_sort( intarr_t* ia )
     if(ia->data[j] == target)
     {
       *i = j;
-      return INTARR_OK
+      return INTARR_OK;
     }
   }
-  return INTARR_NOTFOUND
+  return INTARR_NOTFOUND;
 }
 
 /* LAB 5 TASK 6 */
@@ -160,7 +160,7 @@ intarr_result_t intarr_sort( intarr_t* ia )
 // Append val to the end of ia (allocating space for it). If
 // successful, return INTARR_OK, otherwise return
 // INTARR_BADALLOC. If ia is null, return INTARR_BADARRAY.
-/*
+
 intarr_result_t intarr_push( intarr_t* ia, int val )
 {
   if(ia == NULL)
@@ -168,9 +168,26 @@ intarr_result_t intarr_push( intarr_t* ia, int val )
     return INTARR_BADARRAY;
   }
 
-  int newarr = malloc(sizeof(int)*ia->len+1);
+  int *newarr = malloc(sizeof(int)*ia->len+1);
+  if(newarr == NULL)
+  {
+    return INTARR_BADALLOC;
+  }
   int i;
-  memcpy(newarr->data,ia->data,sizeof(int)*ai->len);
+  for(i = 0 ; i < ia->len;i++)
+  {
+    newarr[i] = ia->data[i];
+  }
+//swap
+
+  newarr[i] = val;
+  int* temp;
+  ia->len++;
+  temp = ia->data;
+  ia->data = newarr;
+  free(temp);
+
+  return INTARR_OK;
 
 }
 
@@ -178,9 +195,94 @@ intarr_result_t intarr_push( intarr_t* ia, int val )
 // from the array, and, if i is non-null, set *i to the removed value,
 // then return INTARR_OK. If the array is empty, leave *i unmodified
 // and return INTARR_BADINDEX. If ia is null, return INTARR_BADARRAY.
-intarr_result_t intarr_pop( intarr_t* ia, int* i );
+intarr_result_t intarr_pop( intarr_t* ia, int* i )
+{
+  if(ia->len < 0 || (!i) )
+  {
+    return INTARR_BADINDEX;
+  }
+
+    int j;
+
+    int *newarr = malloc(sizeof(int)*ia->len-1);
+    for(j = 0 ; j < ia->len-1;j++)
+    {
+      newarr[j+1] = ia->data[j];
+    }
+
+    *i = ia->data[j];
+    int* temp = ia->data;
+    ia->len--;
+    ia->data = newarr;
+    free(temp);
+    return INTARR_OK;
+
+}
 
 
+/* LAB 5 TASK 7 */
+
+// Resize ia to contain newlen values. If newlen is less than the
+// original array length, the end of the array is discarded. If newlen
+// is greater than the original array length, intialize all the new
+// integers to zero. If the allocation is successful, return
+// INTARR_OK, otherwise return INTARR_BADALLOC. If ia is null, return
+// INTARR_BADARRAY.
+/*
+intarr_result_t intarr_resize( intarr_t* ia, unsigned int newlen )
+{
+ if (ia == NULL)
+ {
+   return INTARR_BADARRAY;
+ }
+
+ int newarr = malloc(sizeof(int)*newlen);
+
+ if(newarr == NULL)
+ {
+   return INTARR_BADALLOC;
+ }
+
+if(ia->len < newlen)
+{
+  int i;
+  for(i = 0 ; i < newlen - (ia->len); i++)
+  {
+    if(intarr_push(ia,0) == INTARR_BADALLOC)
+    {
+      return INTARR_BADALLOC
+    }
+  }
+}
+
+else if (ia->len > newlen)
+{
+  int j;
+  for(i = 0 ; i < newlen - (ia->len); i++)
+  {
+    if(intarr_pop(ia,0) == INTARR_BADALLOC)
+    {
+      return INTARR_BADALLOC
+    }
+}
+
+}
+*/
+
+/* LAB 5 TASK 8 */
+
+// Get a deep copy of a portion of ia from index first to index last
+// inclusive. If successful, return a pointer to a newly-allocated
+// intarr_t containing a copy of the specfied section. If an error
+// occurs, i.e. ia is null, first or last are out of bounds, last <
+// first, or memory allocation fails, return a null pointer.
+//intarr_t* intarr_copy_subarray( intarr_t* ia,
+	//			unsigned int first,
+		//		unsigned int last );
+
+
+
+/*
 int main(void){
   int i;
   intarr_t* ia= intarr_create(4);
