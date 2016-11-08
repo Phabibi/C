@@ -3,7 +3,7 @@ void life( uint8_t array[],
       unsigned int cols,
       unsigned int rows )
   {
-    int i,x,y,counter = 0;
+    int i = 0,x = 0 ,y = 0,counter = 0;
     int xmax = 0;
     int xmin = 0;
     int ymax = 0;
@@ -59,7 +59,7 @@ void life( uint8_t array[],
           {
             counter ++;
           }
-          if (array[xmin + y * cols]> 1)
+          if (array[xmin + y * cols] > 1)
           {
             counter ++;
           }
@@ -147,7 +147,7 @@ void life( uint8_t array[],
           }
           else
           {
-            array[x+y*cols] = 225;
+            array[x+y*cols] = 255;
           }
           counter = 0;
         }
@@ -157,7 +157,7 @@ void life( uint8_t array[],
     {
       if (array[i] == 1)
       {
-        array[i] = 225;
+        array[i] = 255;
       }
       if (array[i] == 3)
       {
