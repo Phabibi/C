@@ -68,7 +68,7 @@ intarr_result_t intarr_get( const intarr_t* ia,
     return INTARR_BADARRAY;
   }
 
-  if( index < 0 || index < ((ia->len)-1) || i == NULL)
+  if( index < 0 || index > ((ia->len)-1) || i == NULL)
   {
     return INTARR_BADINDEX;
   }
@@ -246,6 +246,7 @@ intarr_result_t intarr_resize( intarr_t* ia, unsigned int newlen )
 if(ia->len < newlen)
 {
   int i;
+
   for(i = 0 ; i < newlen - (ia->len); i++)
   {
     if(intarr_push(ia,0) == INTARR_BADALLOC)
@@ -255,14 +256,14 @@ if(ia->len < newlen)
   }
 }
 
-else
+if ((newlen - (ia->len)) < 0)
 {
   int j;
-  int swerj = 0;
+  int swag = 0;
   int happi = ia->len - newlen;
   for(j = 0 ; j < happi; j++)
   {
-    if(intarr_pop(ia, &swerj) == INTARR_BADALLOC)
+    if(intarr_pop(ia, &swag) == INTARR_BADALLOC)
       {
         return INTARR_BADALLOC;
       }
@@ -283,7 +284,7 @@ else
 	   unsigned int first,
 		 unsigned int last )
 {
-  if(last > ia->len+1 || last < first || first < 0 || ia == NULL)
+  if(last < ia->len-1 || last < first || first < 0 || ia == NULL)
   {
     return NULL;
   }
