@@ -197,7 +197,7 @@ intarr_result_t intarr_push( intarr_t* ia, int val )
 // and return INTARR_BADINDEX. If ia is null, return INTARR_BADARRAY.
 intarr_result_t intarr_pop( intarr_t* ia, int* i )
 {
-  if(ia->len < 0 || (!i) )
+  if(ia->len <= 0 || (!i) )
   {
     return INTARR_BADINDEX;
   }
@@ -228,7 +228,7 @@ intarr_result_t intarr_pop( intarr_t* ia, int* i )
 // integers to zero. If the allocation is successful, return
 // INTARR_OK, otherwise return INTARR_BADALLOC. If ia is null, return
 // INTARR_BADARRAY.
-/*
+
 intarr_result_t intarr_resize( intarr_t* ia, unsigned int newlen )
 {
  if (ia == NULL)
@@ -236,7 +236,7 @@ intarr_result_t intarr_resize( intarr_t* ia, unsigned int newlen )
    return INTARR_BADARRAY;
  }
 
- int newarr = malloc(sizeof(int)*newlen);
+ int* newarr = malloc(sizeof(int)*newlen);
 
  if(newarr == NULL)
  {
@@ -250,24 +250,27 @@ if(ia->len < newlen)
   {
     if(intarr_push(ia,0) == INTARR_BADALLOC)
     {
-      return INTARR_BADALLOC
+      return INTARR_BADALLOC;
     }
   }
 }
 
-else if (ia->len > newlen)
+else
 {
   int j;
-  for(i = 0 ; i < newlen - (ia->len); i++)
+  int swerj = 0;
+  int happi = ia->len - newlen;
+  for(j = 0 ; j < happi; j++)
   {
-    if(intarr_pop(ia,0) == INTARR_BADALLOC)
-    {
-      return INTARR_BADALLOC
+    if(intarr_pop(ia, &swerj) == INTARR_BADALLOC)
+      {
+        return INTARR_BADALLOC;
+      }
     }
+  }
+  return INTARR_OK;
 }
 
-}
-*/
 
 /* LAB 5 TASK 8 */
 
@@ -276,9 +279,36 @@ else if (ia->len > newlen)
 // intarr_t containing a copy of the specfied section. If an error
 // occurs, i.e. ia is null, first or last are out of bounds, last <
 // first, or memory allocation fails, return a null pointer.
-//intarr_t* intarr_copy_subarray( intarr_t* ia,
-	//			unsigned int first,
-		//		unsigned int last );
+  intarr_t* intarr_copy_subarray( intarr_t* ia,
+	   unsigned int first,
+		 unsigned int last )
+{
+  if(last > ia->len+1 || last < first || first < 0 || ia == NULL)
+  {
+    return NULL;
+  }
+  intarr_t* newarr = malloc(sizeof(intarr_t));
+  int ratio = (last - first) + 1;
+  if (ratio < 0)
+  {
+    return NULL;
+  }
+  newarr->data = malloc(ratio * sizeof(int));
+  if (newarr->data == NULL)
+  {
+    return NULL;
+  }
+
+
+  for(int i = 0 ; i <= ratio ; i++)
+  {
+      newarr->data[i] = ia->data[first];
+      first++;
+  }
+  newarr->len = ratio;
+
+  return newarr;
+}
 
 
 
