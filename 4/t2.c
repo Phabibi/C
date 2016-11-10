@@ -2,6 +2,14 @@
 #include <math.h>
 #include <stdint.h>
 
+//
+
+
+
+
+
+
+
 void draw_rectangle( uint8_t array[],
               unsigned int cols,
               unsigned int rows,
@@ -40,7 +48,7 @@ void draw_rectangle( uint8_t array[],
       {
         //printf("Drawing row %d \n", i);
 
-        if (i >= 0  && j >= 0)
+        if (k < cols  && i < rows)
         {
         array[x + i*cols] = color;
         }
@@ -50,13 +58,13 @@ void draw_rectangle( uint8_t array[],
           //printf("Drawing column %d \n", j);
           if(i == y || i == (y + rect_height) )    // empty region (middle)
           {
-            if( i >= 0 && j >= 0)
+            if( k < cols && i < rows)
             {
               array[j + i *cols] = color;
             }
           }
         }
-        if( i >= 0 && j >= 0)
+        if(k < cols && i < rows)
         {
           array[j + i *cols] = color;
         }
