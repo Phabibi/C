@@ -243,11 +243,13 @@ intarr_result_t intarr_resize( intarr_t* ia, unsigned int newlen )
    return INTARR_BADALLOC;
  }
 
+ int size =  newlen - (ia->len);
+
 if(ia->len < newlen)
 {
   int i;
 
-  for(i = 0 ; i < newlen - (ia->len); i++)
+  for(i = 0 ; i < size; i++)
   {
     if(intarr_push(ia,0) == INTARR_BADALLOC)
     {
@@ -256,7 +258,7 @@ if(ia->len < newlen)
   }
 }
 
-if ((newlen - (ia->len)) < 0)
+if (size < 0)
 {
   int j;
   int swag = 0;
@@ -284,30 +286,32 @@ if ((newlen - (ia->len)) < 0)
 	   unsigned int first,
 		 unsigned int last )
 {
-  if(last < ia->len-1 || last < first || first < 0 || ia == NULL)
+  if(ia == NULL || (last < first) || (first < 0) || (last < ia->len))
   {
+    //perror("S");
     return NULL;
   }
+ //perror("g");
   intarr_t* newarr = malloc(sizeof(intarr_t));
-  int ratio = (last - first) + 1;
-  if (ratio < 0)
+  if(newarr == NULL)
   {
     return NULL;
   }
+  int ratio = last - first + 1;
+
   newarr->data = malloc(ratio * sizeof(int));
+  newarr->len = ratio;
   if (newarr->data == NULL)
   {
     return NULL;
   }
 
-
-  for(int i = 0 ; i <= ratio ; i++)
+  int k = 0;
+  for(int i = first  ; i <= last ; i++)
   {
-      newarr->data[i] = ia->data[first];
-      first++;
+      newarr->data[k] = ia->data[i];
+      k++;
   }
-  newarr->len = ratio;
-
   return newarr;
 }
 
