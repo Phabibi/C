@@ -48,9 +48,12 @@ void draw_rectangle( uint8_t array[],
       {
         //printf("Drawing row %d \n", i);
 
-        if (j < cols  && i < rows)
+        if (j < cols)
         {
-        array[x + i*cols] = color;
+          if( i < rows)
+          {
+            array[x + i*cols] = color;
+          }
         }
 
         for(j = x ; j < x + rect_width - 1  ; j++)             //draws rows (each row must have 0 or len-1)
@@ -58,15 +61,21 @@ void draw_rectangle( uint8_t array[],
           //printf("Drawing column %d \n", j);
           if(i == y || i == (y + rect_height) )    // empty region (middle)
           {
-            if( j < cols && i < rows)
+            if( j < cols)
             {
-              array[j + i *cols] = color;
+              if(i < rows)
+
+              {
+                array[j + i *cols] = color;
+              }
             }
           }
         }
-        if(j < cols && i < rows)
+        if(j < cols)
         {
-          array[j + i *cols] = color;
+          if(i < rows){
+           array[j + i *cols] = color;
+          }
         }
 
         j = x;
