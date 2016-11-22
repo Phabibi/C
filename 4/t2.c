@@ -37,7 +37,7 @@ void draw_rectangle( uint8_t array[],
     return;
   }
 
-  else if (rect_width < 0 || rect_height > 0)
+  else if (rect_width < 0 && rect_height > 0)
   {
     x++;
     x = x + rect_width;
