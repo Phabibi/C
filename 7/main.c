@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "list.h"
 
 int main( int argc, char* argv[] )
@@ -7,28 +8,28 @@ int main( int argc, char* argv[] )
   list_t* list = list_create();
 
   /* task 1 */
-  //list = NULL;
-  //list_prepend(list , 2);
-
+  
+  list = NULL;
+  list_prepend(list , 2);
   /* tast 2 */
 
-  //list->head = list->head->next;
- //element_create (3);
+  list->head = list->head->next;
+  element_create (3);
 
   /* task 3 */
 
-  //list = NULL;
-  //list_index(list , 3);
+  list = NULL;
+  list_index(list , 3);
 
   /* task 4 */
 
-  //list->tail =  NULL;
-  //list_prepend(list , 4);
+  list->tail =  NULL;
+  list_prepend(list , 4);
 
   /* task 6 */
 
-  //list_append(list , 23);
-  //list_index(list , 12);
+  list_append(list , 23);
+  list_index(list , 12);
 
   
 
@@ -38,15 +39,13 @@ int main( int argc, char* argv[] )
 
 
 
-  for( int i=5; i>=0; i-- )
+  for( int i=0; i<5; i++ )
     list_append( list, i );
 
+  for( int i=-1; i>-5; i-- )
+    list_prepend( list, i );
 
   list_print( list );
-
-  quick(list);
-
-    list_print( list );
 
 
 
