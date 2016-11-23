@@ -286,7 +286,7 @@ if (size < 0)
 	   unsigned int first,
 		 unsigned int last )
 {
-  if(ia == NULL || (last < first) || (first < 0) || (last < ia->len))
+  if(ia == NULL || (last < first) || (first < 0) || (last < ia->len -1 ))
   {
     //perror("S");
     return NULL;
@@ -315,7 +315,34 @@ if (size < 0)
   return newarr;
 }
 
+/*
+int intarr_save_binary( intarr_t* ia, const char* filename )
+{
+  FILE* f = fopen(filename,"w");
 
+  if(ia == NULL || ia->data == NULL || f == NULL)
+  {
+    return 1;
+  }
+  size_t size = ia->len;
+
+  int write = fwrite(ia->data, sizeof(int) , size , f);
+
+  if (write == 0)
+  {
+    return 1;
+  }
+
+  fclose(f);
+
+  return 0;
+}
+
+intarr_t* intarr_load_binary( const char* filename )
+{
+
+}
+*/
 
 /*
 int main(void){
