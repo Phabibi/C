@@ -20,7 +20,7 @@ void LLcatenate(list_t * L1, list_t * L2) {
 }
 
 
-void quick(list_t * intlist)
+void list_sort(list_t * intlist)
 {
 
     if(intlist->head == intlist->tail)
@@ -56,8 +56,8 @@ void quick(list_t * intlist)
     intlist->head = NULL;
     intlist->tail = NULL;
 
-    quick(first);
-    quick(second);
+    list_sort(first);
+    list_sort(second);
 
     LLcatenate(intlist , first);
     list_append(intlist , pivot_1->val);
