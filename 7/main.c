@@ -12,20 +12,21 @@ int main( int argc, char* argv[] )
   list_t* list_1 = list_create();
   list_1->head = NULL;
   list_index(list_1 , 2);
+
   /* tast 2 */  
   list_t * list_2 = list_create();
   int i;
-  for(i = 0 ; i < 21 ; i++)
+  for(i = 0 ; i < 210 ; i++)
   {
-    list_append(list_2, i);
+    list_append(list_2, 56);
   }
   list_destroy(list_2);
-  element_create (3);
+  
 
   /* task 3 */
-  list_t* list_3 = list_create();
-  list_3->head = NULL;
-  list_index(list_3 , 3);
+  //list_t* list_3 = list_create();
+  //list_3->head = NULL;
+  //list_index(list_3 , 3);
 
   /* task 4 */
   list_t* list_4 = list_create();
