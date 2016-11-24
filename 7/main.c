@@ -2,21 +2,31 @@
 #include <stdlib.h>
 
 #include "list.h"
+#include <assert.h>
 
 int main( int argc, char* argv[] )
 {
   list_t* list = list_create();
 
   /* task 1 */
-  
+
   list_t* list_1 = list_create();
   list_1->head = NULL;
-  list_index(list_1 , 2);
+  list_index(list_1 , 3);
   list_destroy(list_1);
 
-  /* tast 2 */  
+  /* tast 2 */
   list_t * list_2 = list_create();
-  int i;
+  int i = 0;
+  list_prepend(list_2, 8);
+
+  if(list_2->head !=  list_2->tail)
+  {
+    return 1;
+  }
+  element_t* list_6 = list_index(list_2 , 1223);
+  free(list_6);
+
   for(i = 0 ; i < 210 ; i++)
   {
     list_append(list_2, 56);
@@ -25,7 +35,7 @@ int main( int argc, char* argv[] )
   list_t *  list_d = list_create();
   list_append(list_d, 54);
   list_destroy(list_2);
-  
+
 
   /* task 3 */
   //list_t* list_3 = list_create();
@@ -36,15 +46,9 @@ int main( int argc, char* argv[] )
   list_t* list_4 = list_create();
   //list_4->tail->next = NULL;
   list_prepend(list_4 , 1);
-  if(list_4->head !=  list_4->tail)
-  {
-    return 1;
-  }
 
   /* task 6 */
   //list_t* list_61 = list_create();
-  element_t* list_6 = list_index(list_2 , 1223);
-  free(list_6);
 
 
 
@@ -60,7 +64,7 @@ int main( int argc, char* argv[] )
 
   if(list->tail->next != NULL)
   {
-    return 1;
+    assert(list->tail->next == NULL);
   }
 
   list_print( list );
@@ -68,7 +72,7 @@ int main( int argc, char* argv[] )
 
 
 
-  int index = 4;
+  int index = 2;
   element_t* el = list_index( list, index );
 
   if( el == NULL )
