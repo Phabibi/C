@@ -9,27 +9,37 @@ int main( int argc, char* argv[] )
 
   /* task 1 */
   
-  list = NULL;
-  list_prepend(list , 2);
-  /* tast 2 */
-
-  list->head = list->head->next;
+  list_t* list_1 = list_create();
+  list_1->head = NULL;
+  list_index(list_1 , 2);
+  /* tast 2 */  
+  list_t * list_2 = list_create();
+  int i;
+  for(i = 0 ; i < 21 ; i++)
+  {
+    list_append(list_2, i);
+  }
+  list_destroy(list_2);
   element_create (3);
 
   /* task 3 */
-
-  list = NULL;
-  list_index(list , 3);
+  list_t* list_3 = list_create();
+  list_3->head = NULL;
+  list_index(list_3 , 3);
 
   /* task 4 */
-
-  list->tail =  NULL;
-  list_prepend(list , 4);
+  list_t* list_4 = list_create();
+  //list_4->tail->next = NULL;
+  list_prepend(list_4 , 1);
+  if(list_4->head !=  list_4->tail)
+  {
+    return 1;
+  }
 
   /* task 6 */
-
-  list_append(list , 23);
-  list_index(list , 12);
+  list_t* list_6 = list_create();
+  list_append(list_6 , 23);
+  list_index(list_6 , 12);
 
   
 
@@ -45,7 +55,13 @@ int main( int argc, char* argv[] )
   for( int i=-1; i>-5; i-- )
     list_prepend( list, i );
 
+  if(list->tail->next != NULL)
+  {
+    return 1;
+  }
+
   list_print( list );
+
 
 
 
