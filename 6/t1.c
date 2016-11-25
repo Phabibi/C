@@ -27,11 +27,12 @@ int intarr_save_binary (intarr_t*ia , const char* filename)
   fclose(f);                                            //if its a 0
   return 0;
 }
+
 intarr_t* intarr_load_binary (const char* filename)
 {
   intarr_t* new = malloc(sizeof(intarr_t));
 
-  if(new == NULL)
+  if(!new)
   {
     return NULL;
   }
@@ -40,10 +41,13 @@ intarr_t* intarr_load_binary (const char* filename)
 
   if(f == NULL)
   {
-    if(fread( &(new->len) , sizeof(unsigned int) , 1 , f) != 1)
-    {
-      return NULL;
-    }
+    return NULL;
+  }
+
+  if(fread( &(new->len) , sizeof(unsigned int) , 1 , f) != 1)
+  {
+    return NULL;
+  }
 
     new->data = malloc(sizeof(int)* new->len);
 
@@ -56,10 +60,8 @@ intarr_t* intarr_load_binary (const char* filename)
     {
       return NULL;
     }
-  
-  }
+
+
     fclose(f);
     return new;
 }
-
-/* tast 2 */
