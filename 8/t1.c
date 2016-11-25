@@ -44,6 +44,7 @@ void point_array_reset( point_array_t* pa )
 
   free(pa->points);
   free(pa);
+  pa->len = 0;
 }
 
 
@@ -83,20 +84,30 @@ int point_array_remove( point_array_t* pa, unsigned int i )
     return 1;
   }
 
+  if (i >= pa->len)
+  {
+    return 1;
+  }
+/*
   if(i == pa->len-1)       //last element
   {
     pa->points = realloc(pa->points,sizeof(point_t)*(pa->len-1));
   }
+  */
   else
    {
-  pa->points[i] = pa->points[pa->len-1];;
+  pa->points[i] = pa->points[pa->len-1];
   pa->points = realloc(pa->points,sizeof(point_t)*(pa->len-1));
-  pa->len--;
+
+    if(pa->points != NULL || pa->len > 0)
+      {
+        pa->len--;
+        return 0;
+      }
   }
-  if(pa->points == NULL)
-  {
-    return 1;
-  }
+
+
+
 
   return 0;
 }
