@@ -109,5 +109,5 @@ int point_array_remove( point_array_t* pa, unsigned int i )
 
 
 
-  return 0;
+  return 1;
 }
