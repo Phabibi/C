@@ -107,6 +107,7 @@ ship_t ship_create()
    toroidal world (which is 1x1 units across). */
 void ship_update( ship_t* ship )
 {
+
   ship->x += ship->dx;
   ship->y += ship->dy;
   ship->a += ship->da;
@@ -121,6 +122,35 @@ void ship_update( ship_t* ship )
 
 void ship_draw( const ship_t* ship )
 {
+  ship_t ship0 = *ship;
+  ship0.x += 1 ;
+
+  ship_t ship1 = *ship;
+  ship1.x -= 1 ;
+
+  ship_t ship2 = *ship;
+  ship2.y += 1 ;
+
+  ship_t ship3 = *ship;
+  ship3.y -= 1 ;
+
+  ship_t ship4 = *ship;
+  ship4.y += 1 ;
+  ship4.x -= 1 ;
+
+  ship_t ship5 = *ship;
+  ship5.y -= 1 ;
+  ship5.x += 1 ;
+
+  ship_t ship6 = *ship;
+  ship6.y += 1 ;
+  ship6.x += 1 ;
+
+  ship_t ship7 = *ship;
+  ship7.y -= 1 ;
+  ship7.x -= 1 ;
+
+
   float shipcolor[4] = { 1,1,0,1 };
   float thrustcolor[4] = { 1, 0.2, 0, 0.8 };
 
@@ -138,16 +168,108 @@ void ship_draw( const ship_t* ship )
 		 ship->x + rx, ship->y + ry,
 		 shipcolor );
 
+  draw_triangle( ship0.x + dx, ship0.y + dy,
+     ship0.x + lx, ship0.y + ly,
+     ship0.x + rx, ship0.y + ry,
+     shipcolor );
+
+  draw_triangle( ship1.x + dx, ship1.y + dy,
+     ship1.x + lx, ship1.y + ly,
+     ship1.x + rx, ship1.y + ry,
+     shipcolor );
+
+  draw_triangle( ship2.x + dx, ship2.y + dy,
+     ship2.x + lx, ship2.y + ly,
+     ship2.x + rx, ship2.y + ry,
+     shipcolor );
+
+
+  draw_triangle( ship3.x + dx, ship3.y + dy,
+    ship3.x + lx, ship3.y + ly,
+    ship3.x + rx, ship3.y + ry,
+    shipcolor );
+
+
+  draw_triangle( ship4.x + dx, ship4.y + dy,
+    ship4.x + lx, ship4.y + ly,
+    ship4.x + rx, ship4.y + ry,
+    shipcolor );
+
+   draw_triangle( ship5.x + dx, ship5.y + dy,
+     ship5.x + lx, ship5.y + ly,
+     ship5.x + rx, ship5.y + ry,
+     shipcolor );
+
+    draw_triangle( ship6.x + dx, ship6.y + dy,
+      ship6.x + lx, ship6.y + ly,
+      ship6.x + rx, ship6.y + ry,
+      shipcolor );
+
+
+    draw_triangle( ship7.x + dx, ship7.y + dy,
+      ship7.x + lx, ship7.y + ly,
+      ship7.x + rx, ship7.y + ry,
+      shipcolor );
+
+
+
+
   if( ship->thrust )
     {
       draw_triangle( ship->x - dx, ship->y - dy,
 		     ship->x + lx, ship->y + ly,
 		     ship->x + rx, ship->y + ry,
 		     thrustcolor );
+
+      draw_triangle( ship0.x - dx, ship0.y - dy,
+            ship0.x + lx, ship0.y + ly,
+            ship0.x + rx, ship0.y + ry,
+            thrustcolor );
+
+        draw_triangle( ship1.x - dx, ship1.y - dy,
+            ship1.x + lx, ship1.y + ly,
+            ship1.x + rx, ship1.y + ry,
+            thrustcolor );
+
+         draw_triangle( ship2.x - dx, ship2.y - dy,
+            ship2.x + lx, ship2.y + ly,
+            ship2.x + rx, ship2.y + ry,
+            thrustcolor );
+
+
+        draw_triangle( ship3.x - dx, ship3.y - dy,
+            ship3.x + lx, ship3.y + ly,
+            ship3.x + rx, ship3.y + ry,
+            thrustcolor );
+
+
+        draw_triangle( ship4.x - dx, ship4.y - dy,
+             ship4.x + lx, ship4.y + ly,
+             ship4.x + rx, ship4.y + ry,
+             thrustcolor );
+
+        draw_triangle( ship5.x - dx, ship5.y - dy,
+             ship5.x + lx, ship5.y + ly,
+             ship5.x + rx, ship5.y + ry,
+             thrustcolor );
+
+        draw_triangle( ship6.x - dx, ship6.y - dy,
+             ship6.x + lx, ship6.y + ly,
+             ship6.x + rx, ship6.y + ry,
+             thrustcolor );
+
+
+       draw_triangle( ship7.x - dx, ship7.y - dy,
+             ship7.x + lx, ship7.y + ly,
+             ship7.x + rx, ship7.y + ry,
+             thrustcolor );
+
+
     }
 
+
   /* TASK 3 */
-  /* TODO:
+  /* TOD0:
      more drawing so that the ship and its thrust jet appears to
      wrap around the 1x1 world correctly.
   */
